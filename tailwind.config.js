@@ -11,8 +11,8 @@ export default {
       'woodsmoke':'#111517',
       'silver': '#c1c1c1',
       'gray': '#848484',
-      'ebonyclay-light':'#202C36',
-      'ebonyclay-dark':'#2B3844',
+      'ebonyclaylight':'#202C36',
+      'ebonyclaydark':'#2B3844',
       'white': '#fff'
 
     },

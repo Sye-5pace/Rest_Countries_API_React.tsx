@@ -1,11 +1,12 @@
 import React,{useState , useEffect} from 'react'
 import Header from './Components/Header.tsx'
+import Filters from './Components/Filters.tsx'
 import { setTheme } from './Store/Store.ts'
 import { useDispatch,useSelector } from 'react-redux'
 import './index.css'
 
 const App: React.FC = () => {
-  const theme = useSelector((state: {theme :string}) => state.theme)
+  const theme: string = useSelector((state: {theme :string}) => state.theme)
   const [storeTheme,setStoreTheme] = useState<string>('dark');
   const dispatch = useDispatch();
 
@@ -18,11 +19,10 @@ const App: React.FC = () => {
   },[dispatch])
 
   return (
-    <>
-      <div className='flex flex-col w-full min-h-screen p-0 m-0 bg-alabaster border-box'>
+    <div className={`${theme === 'light' ? 'bg-alabaster' : 'bg-ebonyclaylight'} flex flex-col w-full min-h-screen p-0 m-0 border-box font-nunito gap-y-6`}>
         <Header theme={storeTheme} setStoreTheme={setStoreTheme}/>
-      </div>
-    </>
+        <Filters theme={storeTheme} />
+    </div>
   );
 }
 

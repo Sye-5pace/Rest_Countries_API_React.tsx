@@ -19,8 +19,8 @@ const Header: React.FC<ThemeSwitcherProps> = ({theme,setStoreTheme})=>{
 
     return (
         <>
-            <div className='w-full  bg-white h-[4rem] flex flex-row' >
-                <div className='w-full font-nunito text-woodsmoke flex flex-row justify-between items-center px-[4rem]'>
+            <div className={`w-full  ${ theme === 'light' ? 'bg-white': 'bg-ebonyclaydark'} h-[4rem] flex flex-row`}>
+                <div className={`w-full font-nunito ${theme === 'light'? 'text-woodsmoke' : 'text-white'}  flex flex-row justify-between items-center px-[4rem]`}>
                     <h2 className='text-[1.25rem] font-extrabold'>Where in the world?</h2>
                     <div className='flex gap-2'>
                         { theme === 'light' ? 
