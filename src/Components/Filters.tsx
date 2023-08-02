@@ -1,8 +1,5 @@
 import React from 'react'
-
-interface FilterProps {
-    theme: string
-}
+import { FilterProps } from '../Interface';
 
 const Filters: React.FC<FilterProps> = ({theme}) => {
     

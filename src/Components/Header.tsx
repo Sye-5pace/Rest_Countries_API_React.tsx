@@ -1,11 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { setTheme } from '../Store/Store.ts';
+import { ThemeSwitcherProps } from '../Interface.ts';
 
-interface ThemeSwitcherProps {
-    theme: string;
-    setStoreTheme: React.Dispatch<React.SetStateAction<string>>;
-}
 
 const Header: React.FC<ThemeSwitcherProps> = ({theme,setStoreTheme})=>{
     const dispatch = useDispatch();
