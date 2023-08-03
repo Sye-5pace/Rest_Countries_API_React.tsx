@@ -9,7 +9,7 @@ export interface CountryData {
     "subregion": string,
     "region": string,
     "population": number,
-    "latlng": [float, float],
+    "latlng": [number, number],
     "demonym": string,
     "area": number,
     "timezones": [string],
@@ -61,14 +61,21 @@ export interface CountryData {
 
 export interface FilterProps {
     theme: string
+    value: string
+    setValue: React.Dispatch<React.SetStateAction<string>>
 }
 
 export interface CountriesProps {
     theme: string
-    data: CountryData[]
+    data: CountryData[] | null
+    value: string
 }
 
 export interface ThemeSwitcherProps {
     theme: string;
     setStoreTheme: React.Dispatch<React.SetStateAction<string>>;
 }
+export interface AppState {
+    theme: string
+}
+  
