@@ -65,6 +65,7 @@ export interface FilterProps {
 
 export interface CountriesProps {
     theme: string
+    data: CountryData[]
 }
 
 export interface ThemeSwitcherProps {

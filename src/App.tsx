@@ -7,13 +7,18 @@ import './index.css'
 import Countries from './Components/Countries.tsx'
 import { CountryData } from './Interface.ts'
 
+interface AppState {
+  theme: string
+}
+
 const App: React.FC = () => {
-  const theme: string = useSelector((state: {theme :string}) => state.theme)
+  const theme: string = useSelector((state: AppState) => state.theme)
   const [storeTheme,setStoreTheme] = useState<string>('dark');
-  // const [data, setData ] = useState<>('')
+  const [data, setData ] = useState<CountryData[] | null>(null)
   const dispatch = useDispatch();
 
   useEffect(() =>{
+    dataFetch()
     const storedTheme = localStorage.getItem('theme')
     if( storedTheme){
       setStoreTheme(storedTheme);
@@ -21,7 +26,7 @@ const App: React.FC = () => {
     }
   },[dispatch])
 
-  const dataFetch = async() => {
+  const dataFetch = async(): Promise<void> => {
     const baseURL: string = 'https://restcountries.com/v2/all';
     try{
       const response = await fetch(baseURL);
@@ -29,6 +34,8 @@ const App: React.FC = () => {
         throw new Error("Request failed with status: " + response.status)
       }
       const countries: CountryData[] = await response.json();
+      setData(countries)
+      console.log(countries)      
     }catch(error){
       console.log(error)
     }
@@ -38,7 +45,7 @@ const App: React.FC = () => {
     <div className={`${storeTheme === 'light' ? 'bg-alabaster' : 'bg-ebonyclaylight'} flex flex-col w-full min-h-screen p-0 m-0 border-box font-nunito gap-y-6`}>
         <Header theme={storeTheme} setStoreTheme={setStoreTheme}/>
         <Filters theme={storeTheme} />
-        <Countries theme={storeTheme}/>
+        <Countries theme={storeTheme} data={data}/>
     </div>
   );
 }

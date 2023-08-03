@@ -1,8 +1,8 @@
 import React from 'react'
-import { CountryData,CountriesProps } from '../Interface';
+import { CountriesProps } from '../Interface';
 
 
-const Countries: React.FC<CountriesProps> = ({theme}) =>{
+const Countries: React.FC<CountriesProps> = ({theme,data}) =>{
 
     return (
         <div className='h-full border-2 mx-[4rem]'>
