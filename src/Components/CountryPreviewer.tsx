@@ -1,11 +1,19 @@
-import React from 'react';
-import { useParams,Link,Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams,Link, useNavigate } from 'react-router-dom';
 import { PreviewerProps } from '../Interface';
 
 const Previewer: React.FC<PreviewerProps> = ({data,theme})=> {
-    const { alpha3Code }: { alpha3Code: string } = useParams();
+    const params = useParams();
+    const {alpha3Code} = params;
     
-    const country = data?.find((country) => country.alpha3Code === alpha3Code);
+    const [country, setCountry] = useState()
+    
+    useEffect(() => {
+        const findCountry = data?.find((country) => country.alpha3Code === alpha3Code)
+        setCountry(findCountry)
+    },[alpha3Code, data])
+
+    const navigate = useNavigate()
 
     if(!country){
         return <div>Country not found</div>
@@ -15,7 +23,14 @@ const Previewer: React.FC<PreviewerProps> = ({data,theme})=> {
         const borderCountry = data?.find((c) => c.alpha3Code === borderCode);
         return borderCountry?.name || borderCode;
     })
+    
+    const borderCodes = () => country.borders.map((borderCode) => {
+        const border = data?.find((c) => c.alpha3Code === borderCode);
+        return border?.alpha3Code;
+    })
 
+    // const handleBorderCountryClick
+    
     return(
         <>
             <div className={`${theme === 'light' ? 'text-woodsmoke' : 'text-white'} mx-[4rem] flex flex-col gap-y-12`}>
@@ -48,11 +63,13 @@ const Previewer: React.FC<PreviewerProps> = ({data,theme})=> {
                         <div className='flex flex-row items-center gap-4'>
                             <h4 className='font-semibold w-[12rem]'>Border Countries:</h4>
                             <div className='flex flex-wrap w-full gap-2'>
-                                {borderCountryNames.map((borderName) => (
-                                    <div key={borderName}
+                                {borderCountryNames.map((borderName, index) => (
+                                    <div key={index}
                                     className={`px-2 py-[0.18rem] border-2 rounded-[0.25rem] cursor-pointer ${
                                         theme === 'light' ? 'bg-white text-woodsmoke' : 'bg-ebonyclaydark text-white'
-                                    }`}>
+                                    }`}
+                                    onClick={() => navigate(`/country/${borderCodes()[index.toString()]}`)}
+                                    >
                                         {borderName}
                                     </div>
                                 ))}
