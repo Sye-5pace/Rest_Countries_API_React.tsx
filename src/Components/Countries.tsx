@@ -30,10 +30,10 @@ const Countries: React.FC<CountriesProps> = ({ theme, data, searchValue, regionF
     // const handlePageRedirect = ()
 
     return (
-        <div className='h-full  mx-[4rem]  grid grid-cols-4 gap-y-8 gap-x-9 cursor-pointer pb-4'>
+        <div className='h-full  laptop:mx-[4rem] mobile:mx-auto  grid laptop:grid-cols-4 mobile:grid-cols-1 gap-y-8 laptop:gap-x-9 cursor-pointer pb-4'>
             {filteredCountries.map((country)=> (
                 <Link to={`/country/${country.alpha3Code}`}
-                      key={country.alpha3Code}  className={`w-[20rem] h-[25rem] rounded-[0.3125rem] ${theme === 'light' ? 'text-woodsmoke bg-white' : 'text-white bg-ebonyclaydark'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
+                      key={country.alpha3Code}  className={`w-[20rem] h-[25rem] rounded-[0.3125rem] shadow-lg ${theme === 'light' ? 'text-woodsmoke bg-white shadow-slate-200/50' : 'text-white bg-ebonyclaydark shadow-custom'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
                     <img className='object-cover object-center w-full h-full' src={country.flag} alt={`Flag of ${country.name}`} />
                     <div className='flex flex-col pb-2 gap-y-3'>
                         <h1 className={`${theme === 'light' ? 'text-woodsmoke' : 'text-white'} font-bold text-[1.15rem] ml-8`}>{country.name}</h1>
