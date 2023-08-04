@@ -14,7 +14,6 @@ const App: React.FC = () => {
   const theme: string = useSelector((state: AppState) => state.theme)
   const [storeTheme,setStoreTheme] = useState<string>('dark');
   const [data, setData ] = useState<CountryData[] | null>(null)
-  const [value, setValue] = useState<string>('')
   const [searchValue, setSearchValue] = useState<string>('')
   const [regionFilter, setRegionFilter] = useState<string>('all')
   const dispatch = useDispatch();

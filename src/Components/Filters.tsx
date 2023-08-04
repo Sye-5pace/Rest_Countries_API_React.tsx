@@ -1,7 +1,7 @@
 import React from 'react'
 import { FilterProps } from '../Interface';
 
-const Filters: React.FC<FilterProps> = ({theme , value, setValue, handleSearchCountry, handleRegionFilter }) => {
+const Filters: React.FC<FilterProps> = ({theme , value, setValue, handleRegionFilter }) => {
     
 
     return (
