@@ -1,12 +1,35 @@
-import React from 'react'
-import { CountriesProps } from '../Interface';
+import React from 'react';
+
+import { CountriesProps,CountryData } from '../Interface';
 
 
-const Countries: React.FC<CountriesProps> = ({theme,data}) =>{
+const Countries: React.FC<CountriesProps> = ({ theme, data, searchValue, regionFilter}) =>{
+    const filterCountries = ( countries: CountryData[] | null) => {
+        if(!countries) return [];
+
+        let filteredCountries = countries;
+
+        //For HandleSearchCountry() function
+        if(searchValue.trim() !== '' ) {
+            filteredCountries = filteredCountries.filter((country) => 
+                country.name.toLowerCase().includes(searchValue.toLowerCase())
+            )
+        }
+
+        //For handleRegionFilter() function
+        if( regionFilter !== 'all'){
+            filteredCountries = filteredCountries.filter((country) =>
+             country.region.toLowerCase() === regionFilter.toLowerCase()
+            )
+        }
+        return filteredCountries
+    }
+
+    const filteredCountries = filterCountries(data);
 
     return (
         <div className='h-full  mx-[4rem]  grid grid-cols-4 gap-y-8 gap-x-9 cursor-pointer pb-4'>
-            {data?.map((country)=> (
+            {filteredCountries.map((country)=> (
                 <div className={`w-[20rem] h-[25rem] rounded-[0.3125rem] ${theme === 'light' ? 'text-woodsmoke bg-white' : 'text-white bg-ebonyclaydark'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
                     <img className='object-cover object-center w-full h-full' src={country.flag} alt={`Flag of ${country.name}`} />
                     <div className='flex flex-col pb-2 gap-y-3'>

@@ -60,15 +60,18 @@ export interface CountryData {
 }
 
 export interface FilterProps {
-    theme: string
-    value: string
-    setValue: React.Dispatch<React.SetStateAction<string>>
+    theme: string;
+    value: string;
+    setValue: React.Dispatch<React.SetStateAction<string>>;
+    handleSearchCountry: (searchValue: string) => void;
+    handleRegionFilter: (regionValue: string) => void;
 }
 
 export interface CountriesProps {
     theme: string
     data: CountryData[] | null
-    value: string
+    searchValue: string
+    regionFilter: string
 }
 
 export interface ThemeSwitcherProps {

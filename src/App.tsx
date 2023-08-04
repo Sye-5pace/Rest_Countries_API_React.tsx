@@ -12,8 +12,11 @@ const App: React.FC = () => {
   const theme: string = useSelector((state: AppState) => state.theme)
   const [storeTheme,setStoreTheme] = useState<string>('dark');
   const [data, setData ] = useState<CountryData[] | null>(null)
-  const [ value, setValue ] = useState<string>('')
+  const [value, setValue] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [regionFilter, setRegionFilter] = useState<string>('all')
   const dispatch = useDispatch();
+
 
   useEffect(() =>{
     dataFetch()
@@ -24,8 +27,12 @@ const App: React.FC = () => {
     }
   },[dispatch,theme])
 
-  const handleSearchCountry = (value)=>{
+  const handleSearchCountry = (searchValue: string)=>{
+    setSearchValue(searchValue);
+  }
 
+  const handleRegionFilter = (regionFilter: string)=>{
+    setRegionFilter(regionFilter);
   }
 
   const dataFetch = async(): Promise<void> => {
@@ -45,8 +52,8 @@ const App: React.FC = () => {
   return (
     <div className={`${storeTheme === 'light' ? 'bg-alabaster' : 'bg-ebonyclaylight'} flex flex-col w-full min-h-screen p-0 m-0 border-box font-nunito gap-y-6`}>
         <Header theme={storeTheme} setStoreTheme={setStoreTheme}/>
-        <Filters handleSearchCountry={handleSearchCountry} theme={storeTheme} value={value} setValue={setValue} />
-        <Countries theme={storeTheme} data={data} value={value}/>
+        <Filters theme={storeTheme} value={searchValue} setValue={setSearchValue} handleSearchCountry={handleSearchCountry} handleRegionFilter={handleRegionFilter}/>
+        <Countries theme={storeTheme} data={data} searchValue={searchValue} regionFilter={regionFilter}/>
     </div>
   );
 }
