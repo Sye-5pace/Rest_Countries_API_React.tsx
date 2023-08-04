@@ -1,10 +1,12 @@
 import React,{useState , useEffect} from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './Components/Header.tsx'
 import Filters from './Components/Filters.tsx'
 import { setTheme } from './Store/Store.ts'
 import { useDispatch,useSelector } from 'react-redux'
 import './index.css'
 import Countries from './Components/Countries.tsx'
+import CountryPreviewer from './Components/CountryPreviewer.tsx'
 import { CountryData,AppState } from './Interface.ts'
 
 
@@ -50,11 +52,22 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className={`${storeTheme === 'light' ? 'bg-alabaster' : 'bg-ebonyclaylight'} flex flex-col w-full min-h-screen p-0 m-0 border-box font-nunito gap-y-6`}>
-        <Header theme={storeTheme} setStoreTheme={setStoreTheme}/>
-        <Filters theme={storeTheme} value={searchValue} setValue={setSearchValue} handleSearchCountry={handleSearchCountry} handleRegionFilter={handleRegionFilter}/>
-        <Countries theme={storeTheme} data={data} searchValue={searchValue} regionFilter={regionFilter}/>
-    </div>
+    <Router>
+      <div className={`${storeTheme === 'light' ? 'bg-alabaster' : 'bg-ebonyclaylight'} flex flex-col w-full min-h-screen p-0 m-0 border-box font-nunito gap-y-[4rem]`}>
+          <Header theme={storeTheme} setStoreTheme={setStoreTheme}/>
+          <Routes>
+            <Route 
+              path='/'
+              element={
+              <>
+                <Filters theme={storeTheme} value={searchValue} setValue={setSearchValue} handleSearchCountry={handleSearchCountry} handleRegionFilter={handleRegionFilter}/>
+                <Countries theme={storeTheme} data={data} searchValue={searchValue} regionFilter={regionFilter}/>
+              </>}
+            />
+            <Route path='/country/:alpha3Code' element={<CountryPreviewer data={data} theme={storeTheme}/>} />
+          </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { CountriesProps,CountryData } from '../Interface';
 
 
@@ -27,10 +27,13 @@ const Countries: React.FC<CountriesProps> = ({ theme, data, searchValue, regionF
 
     const filteredCountries = filterCountries(data);
 
+    // const handlePageRedirect = ()
+
     return (
         <div className='h-full  mx-[4rem]  grid grid-cols-4 gap-y-8 gap-x-9 cursor-pointer pb-4'>
             {filteredCountries.map((country)=> (
-                <div className={`w-[20rem] h-[25rem] rounded-[0.3125rem] ${theme === 'light' ? 'text-woodsmoke bg-white' : 'text-white bg-ebonyclaydark'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
+                <Link to={`/country/${country.alpha3Code}`}
+                      key={country.alpha3Code}  className={`w-[20rem] h-[25rem] rounded-[0.3125rem] ${theme === 'light' ? 'text-woodsmoke bg-white' : 'text-white bg-ebonyclaydark'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
                     <img className='object-cover object-center w-full h-full' src={country.flag} alt={`Flag of ${country.name}`} />
                     <div className='flex flex-col pb-2 gap-y-3'>
                         <h1 className={`${theme === 'light' ? 'text-woodsmoke' : 'text-white'} font-bold text-[1.15rem] ml-8`}>{country.name}</h1>
@@ -40,7 +43,7 @@ const Countries: React.FC<CountriesProps> = ({ theme, data, searchValue, regionF
                             <h4>Capital:<span className='font-thin'>{country.capital}</span></h4>
                         </div>
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     );

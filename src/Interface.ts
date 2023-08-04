@@ -82,3 +82,7 @@ export interface AppState {
     theme: string
 }
   
+export interface PreviewerProps {
+    data: CountryData[] | null
+    theme: string
+}
