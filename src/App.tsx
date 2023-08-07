@@ -8,19 +8,27 @@ import './index.css'
 import Countries from './Components/Countries.tsx'
 import CountryPreviewer from './Components/CountryPreviewer.tsx'
 import { CountryData,AppState } from './Interface.ts'
+import Loading from './assets/undraw_loading_re_5axr (3).svg'
 
 
 const App: React.FC = () => {
   const theme: string = useSelector((state: AppState) => state.theme)
-  const [storeTheme,setStoreTheme] = useState<string>('dark');
+  const [storeTheme,setStoreTheme] = useState<string>(theme);
   const [data, setData ] = useState<CountryData[] | null>(null)
   const [searchValue, setSearchValue] = useState<string>('')
   const [regionFilter, setRegionFilter] = useState<string>('all')
+  const [ loading, setLoading] = useState<boolean>(true)
   const dispatch = useDispatch();
 
 
   useEffect(() =>{
     dataFetch()
+      .then(() => setLoading(false))
+      .catch((error) => {
+        console.log(error)
+        setLoading(false)
+    })
+
     const storedTheme = localStorage.getItem('theme')
     if( storedTheme){
       setStoreTheme(storedTheme);
@@ -60,7 +68,14 @@ const App: React.FC = () => {
               element={
               <>
                 <Filters theme={storeTheme} value={searchValue} setValue={setSearchValue} handleSearchCountry={handleSearchCountry} handleRegionFilter={handleRegionFilter}/>
-                <Countries theme={storeTheme} data={data} searchValue={searchValue} regionFilter={regionFilter}/>
+                {loading ? (
+                    <div className={`flex flex-col justify-center items-center h-[50vh] font-bold mx-auto mt-[3rem] ${storeTheme === 'light' ? 'text-white': 'text-woodsmoke'}`}>
+                      <img className='h-[20rem] ' src={Loading} alt='Loading image'/>
+                      <p className={`${storeTheme === 'light' ? 'text-woodsmoke': 'text-white'} font-bold text-[1.3rem]`}>Loading...</p>
+                    </div>
+                  ) : (
+                    <Countries theme={storeTheme} data={data} searchValue={searchValue} regionFilter={regionFilter}/>
+                  )}
               </>}
             />
             <Route path='/country/:alpha3Code' element={<CountryPreviewer data={data} theme={storeTheme}/>} />

@@ -27,8 +27,6 @@ const Countries: React.FC<CountriesProps> = ({ theme, data, searchValue, regionF
 
     const filteredCountries = filterCountries(data);
 
-    // const handlePageRedirect = ()
-
     return (
         <div className='h-full  laptop:mx-[4rem] mobile:mx-auto  grid laptop:grid-cols-4 mobile:grid-cols-1 gap-y-8 laptop:gap-x-9 cursor-pointer pb-4'>
             {filteredCountries.map((country)=> (

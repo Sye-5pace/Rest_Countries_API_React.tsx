@@ -14,7 +14,7 @@ const Filters: React.FC<FilterProps> = ({theme , value, setValue, handleRegionFi
                     <input className={`font-semibold text-[1.1rem] ${theme === 'light' ? 'bg-white text-gray': 'bg-ebonyclaydark text-white'} w-full h-full focus:outline-none`} placeholder='Search for a country'
                      value={value} onChange={(e) => setValue(e.target.value)} />
                 </div>
-                <select className={`cursor-pointer font-semibold px-4 focus:outline-none rounded-[0.3125rem] laptop:h-[3.5rem] w-[12.5rem] ${theme === 'light' ? 'bg-white text-woodsmoke' : 'bg-ebonyclaydark text-white'} mr-[9rem]`}
+                <select className={`cursor-pointer font-semibold px-4 focus:outline-none rounded-[0.3125rem] h-[3.5rem] w-[12.5rem] ${theme === 'light' ? 'bg-white text-woodsmoke' : 'bg-ebonyclaydark text-white'} mobile:mr-[9rem]`}
                  onChange={(e) => handleRegionFilter(e.target.value)}>
                     <option value="all">Filter by Region</option>
                     <option value="africa">Africa</option>
