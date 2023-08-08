@@ -19,10 +19,10 @@ const Previewer: React.FC<PreviewerProps> = ({ data, theme})=> {
         return <div>Country not found</div>
     }
 
-    const borderCountryNames: string[] = country.borders.map((borderCode) => {
+    const borderCountryNames: string[] = country.borders ? country.borders.map((borderCode) => {
         const borderCountry = data?.find((c) => c.alpha3Code === borderCode);
         return borderCountry?.name || borderCode;
-    })
+    }) : []
     
     const borderCodes = () => country.borders.map((borderCode) => {
         const border = data?.find((c) => c.alpha3Code === borderCode);
@@ -68,9 +68,10 @@ const Previewer: React.FC<PreviewerProps> = ({ data, theme})=> {
                                     }`}
                                     onClick={() => navigate(`/country/${borderCodes()[index]}`)}
                                     >
-                                        {borderName}
+                                        {borderName } 
                                     </div>
-                                ))}
+                                )) } 
+                                 {/* <p>not available</p> */}
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,6 @@ const themeReducer = (state: ThemeType = initialState, action: AnyAction) => {
                 ...state,
                 theme: action.payload
             }
-        
         default:
             return state;
     }
