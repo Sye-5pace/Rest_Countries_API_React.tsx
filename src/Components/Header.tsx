@@ -16,7 +16,7 @@ const Header: React.FC<ThemeSwitcherProps> = ({theme,setStoreTheme})=>{
 
     return (
         <>
-            <div className={`laptop:w-full shadow-lg ${ theme === 'light' ? 'bg-white shadow-slate-200/50': 'bg-ebonyclaydark shadow-custom'} laptop:h-[4rem] mobile:h-[5rem] flex flex-row py-6 fixed `}>
+            <div className={`w-full shadow-lg ${ theme === 'light' ? 'bg-white shadow-slate-200/50': 'bg-ebonyclaydark shadow-custom'} laptop:h-[4rem] mobile:h-[5rem] flex flex-row py-6 fixed `}>
                 <div className={`laptop:w-full font-nunito ${theme === 'light'? 'text-woodsmoke' : 'text-white'}  flex flex-row justify-between items-center laptop:px-[4rem] mobile:mx-auto mobile:gap-16`}>
                     <h2 className='laptop:text-[1.25rem] mobile:text-[0.875rem] font-extrabold'>Where in the world?</h2>
                     <div className='flex gap-2'>
@@ -30,5 +30,5 @@ const Header: React.FC<ThemeSwitcherProps> = ({theme,setStoreTheme})=>{
         </>
     );
 }
-
+// shadow-lg
 export default Header;

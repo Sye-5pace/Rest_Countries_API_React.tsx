@@ -86,3 +86,8 @@ export interface PreviewerProps {
     data: CountryData[] | null
     theme: string
 }
+
+export interface OptionElementProps {
+    value: string;
+    onClick: () => void;
+}
