@@ -31,23 +31,23 @@ const Previewer: React.FC<PreviewerProps> = ({ data, theme})=> {
     
     return(
         <>
-            <div className={`${theme === 'light' ? 'text-woodsmoke' : 'text-white'} laptop:mx-[4rem] mobile:mx-[1.5rem] flex flex-col gap-y-12`}>
+            <div className={`${theme === 'light' ? 'text-woodsmoke' : 'text-white'} laptop:mx-[4rem] mobile:mx-[1.5rem] flex flex-col gap-y-[10.4rem]`}>
                 <Link to={'/'} >
-                    <div className={`w-[8.5rem] h-[2.5rem] flex flex-row items-center justify-center gap-3 shadow-lg ${theme === 'light' ? 'bg-white shadow-slate-200/50' : 'bg-ebonyclaydark shadow-custom'} rounded-[0.375rem]`}>
+                    <div className={`w-[8.5rem] h-[2.5rem] flex flex-row items-center justify-center gap-3 shadow-lg ${theme === 'light' ? 'bg-white shadow-slate-200/50' : 'bg-ebonyclaydark shadow-custom'} rounded-[0.375rem] relative top-[7rem]`}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 ${theme === 'light' ? 'stroke-woodsmoke' : 'stroke-white'}`}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                         </svg>
                         <span className='font-semibold'>Back</span>
                     </div>
                 </Link>
-                <section className='flex laptop:flex-row items-center justify-between laptop:gap-[8rem] mobile:flex-col mobile:gap-y-[3rem]'>
-                    <img className='w-[35rem] h-[30.187rem] object-cover object-center' src={country.flag}/>
-                    <div className='flex flex-col h-[20.175rem] laptop:gap-y-6 mobile:gap-y-8 self-center'>
+                <section className='children:border-2  border-2 flex laptop:flex-row items-center laptop:gap-[8rem] mobile:flex-col mobile:gap-y-[3rem]'>
+                    <img className='w-[48rem] h-[33rem] object-cover' src={country.flag}/>
+                    <div className='flex flex-col self-center px-2 laptop:gap-y-6 mobile:gap-y-8'>
                         <h1 className='font-bold text-[2rem]'>{country.name}</h1>
-                        <div className='flex laptop:flex-row laptop:gap-[15rem] mobile:flex-col mobile:gap-y-6'>
+                        <div className='flex laptop:flex-row laptop:gap-[14rem]  mobile:flex-col mobile:gap-y-6'>
                             <div className='flex flex-col gap-2'>
                                 <h4>Native Name: <span className='font-thin'>{country.nativeName}</span></h4>
-                                <h4>Population: <span className='font-thin'>{country.population}</span></h4>
+                                <h4>Population: <span className='font-thin'>{country.population.toLocaleString()}</span></h4>
                                 <h4>Region: <span className='font-thin'>{country.region}</span></h4>
                                 <h4>Sub Region: <span className='font-thin'>{country.subregion}</span></h4>
                                 <h4>Capital: <span className='font-thin'>{country.nativeName}</span></h4>
@@ -58,7 +58,7 @@ const Previewer: React.FC<PreviewerProps> = ({ data, theme})=> {
                                 <h4>Languages: <span className='font-thin'>{country.languages[0].name}</span></h4>
                             </div>
                         </div>
-                        <div className='flex items-center gap-4 laptop:flex-row mobile:flex-col'>
+                        <div className='flex items-start gap-4 laptop:flex-row mobile:flex-col'>
                             <h4 className='font-semibold w-[12rem]'>Border Countries:</h4>
                             <div className='flex flex-wrap w-full gap-2'>
                                 {borderCountryNames.map((borderName, index) => (

@@ -60,7 +60,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className={`${storeTheme === 'light' ? 'bg-alabaster' : 'bg-ebonyclaylight'} flex flex-col w-full min-h-screen p-0 m-0 border-box font-nunito gap-y-[4rem]`}>
+      <div className={`${storeTheme === 'light' ? 'bg-alabaster' : 'bg-ebonyclaylight'} flex flex-col w-full min-h-screen p-0 m-0 border-box font-nunito gap-y-[13rem]`}>
           <Header theme={storeTheme} setStoreTheme={setStoreTheme}/>
           <Routes>
             <Route 
@@ -71,7 +71,15 @@ const App: React.FC = () => {
                 {loading ? (
                     <div className={`flex flex-col justify-center items-center h-[50vh] font-bold mx-auto mt-[3rem] ${storeTheme === 'light' ? 'text-white': 'text-woodsmoke'}`}>
                       <img className='h-[20rem] ' src={Loading} alt='Loading image'/>
-                      <p className={`${storeTheme === 'light' ? 'text-woodsmoke': 'text-white'} font-bold text-[1.3rem]`}>Loading...</p>
+                      <div className={`${storeTheme === 'light' ? 'text-woodsmoke': 'text-white'} font-bold text-[1.3rem] flex flex-row items-center gap-1`}>
+                        Loading 
+                        <div className='flex flex-row w-full gap-2 mt-2 load'>
+                          <span className={`w-[0.29rem] h-[0.29rem]  rounded-full ${storeTheme === 'light' ? 'bg-woodsmoke':'bg-white'} dot`}></span>
+                          <span className={`w-[0.29rem] h-[0.29rem]  rounded-full ${storeTheme === 'light' ? 'bg-woodsmoke':'bg-white'} dot`}></span>
+                          <span className={`w-[0.29rem] h-[0.29rem]  rounded-full ${storeTheme === 'light' ? 'bg-woodsmoke ':'bg-white'} dot`}></span>
+                          <span className={`w-[0.29rem] h-[0.29rem]  rounded-full ${storeTheme === 'light' ? 'bg-woodsmoke':'bg-white'} dot`}></span>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <Countries theme={storeTheme} data={data} searchValue={searchValue} regionFilter={regionFilter}/>

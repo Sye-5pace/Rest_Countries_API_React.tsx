@@ -28,17 +28,17 @@ const Countries: React.FC<CountriesProps> = ({ theme, data, searchValue, regionF
     const filteredCountries = filterCountries(data);
 
     return (
-        <div className='h-full  laptop:mx-[4rem] mobile:mx-auto  grid laptop:grid-cols-4 mobile:grid-cols-1 gap-y-8 laptop:gap-x-9 cursor-pointer pb-4'>
+        <div className='h-full  laptop:mx-[4rem] mobile:mx-auto  grid laptop:grid-cols-4 mobile:grid-cols-1 gap-y-12 laptop:gap-x-[8rem] cursor-pointer pb-4'>
             {filteredCountries.map((country)=> (
                 <Link to={`/country/${country.alpha3Code}`}
-                      key={country.alpha3Code}  className={`w-[20rem] h-[25rem] rounded-[0.3125rem] shadow-lg ${theme === 'light' ? 'text-woodsmoke bg-white shadow-slate-200/50' : 'text-white bg-ebonyclaydark shadow-custom'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
+                      key={country.alpha3Code}  className={`w-[21.5rem] h-[25rem] rounded-[0.3125rem] shadow-lg ${theme === 'light' ? 'text-woodsmoke bg-white shadow-slate-200/50' : 'text-white bg-ebonyclaydark shadow-custom'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
                     <img className='object-cover object-center w-full h-full' src={country.flag} alt={`Flag of ${country.name}`} />
                     <div className='flex flex-col pb-2 gap-y-3'>
                         <h1 className={`${theme === 'light' ? 'text-woodsmoke' : 'text-white'} font-bold text-[1.15rem] ml-8`}>{country.name}</h1>
                         <div className='flex flex-col ml-8 gap-y-2'>
-                            <h4>Population:<span className='font-thin'>{country.population}</span></h4>
-                            <h4>Region:<span className='font-thin'>{country.region}</span></h4>
-                            <h4>Capital:<span className='font-thin'>{country.capital}</span></h4>
+                            <h4>Population: <span className='font-thin'>{country.population.toLocaleString()}</span></h4>
+                            <h4>Region: <span className='font-thin'>{country.region}</span></h4>
+                            <h4>Capital: <span className='font-thin'>{country.capital}</span></h4>
                         </div>
                     </div>
                 </Link>

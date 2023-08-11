@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.load .dot{
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.load .dot:nth-child(1){
+    animation-delay: -0.32s;
+}
+.load .dot:nth-child(2){
+    animation-delay: -0.16s;
+}
+.load .dot:nth-child(3){
+    animation-delay: 0;
+}
+.load .dot:nth-child(4){
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(0);
+    }
+    50%{
+        transform: scale(1);
+    }
+}
