@@ -1,4 +1,4 @@
-# Rest Countries API with Theme switcher
+# Rest Countries API with Theme switcher coded by Silas Owu
 
 A showcase of all countries by regions or search engine with their respective
 details coupled with a theme switcher for light and dark mode.
@@ -30,3 +30,4 @@ details coupled with a theme switcher for light and dark mode.
 - Tailwindcss for styling
 - react-redux library for state management
 - React + Typescript + Vite
+- 
