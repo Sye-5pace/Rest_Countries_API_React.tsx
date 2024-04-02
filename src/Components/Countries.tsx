@@ -28,10 +28,10 @@ const Countries: React.FC<CountriesProps> = ({ theme, data, searchValue, regionF
     const filteredCountries = filterCountries(data);
 
     return (
-        <div className='h-full  laptop:mx-[4rem] mobile:mx-auto  grid laptop:grid-cols-4 mobile:grid-cols-1 gap-y-12 laptop:gap-x-[8rem] cursor-pointer pb-4'>
+        <div className='h-full  laptop:px-[4rem] mx-auto  grid laptop:grid-cols-4 mobile:grid-cols-1 gap-y-12 laptop:gap-x-[2rem] cursor-pointer pb-4 laptop:w-full'>
             {filteredCountries.map((country)=> (
                 <Link to={`/country/${country.alpha3Code}`}
-                      key={country.alpha3Code}  className={`w-[21.5rem] h-[25rem] rounded-[0.3125rem] shadow-lg ${theme === 'light' ? 'text-woodsmoke bg-white shadow-slate-200/50' : 'text-white bg-ebonyclaydark shadow-custom'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
+                      key={country.alpha3Code}  className={`h-[24rem] rounded-[0.3125rem] shadow-lg ${theme === 'light' ? 'text-woodsmoke bg-white shadow-slate-200/50' : 'text-white bg-ebonyclaydark shadow-custom'} pb-4 grid grid-rows-[55%_40%] gap-y-6`}>
                     <img className='object-cover object-center w-full h-full' src={country.flag} alt={`Flag of ${country.name}`} />
                     <div className='flex flex-col pb-2 gap-y-3'>
                         <h1 className={`${theme === 'light' ? 'text-woodsmoke' : 'text-white'} font-bold text-[1.15rem] ml-8`}>{country.name}</h1>
